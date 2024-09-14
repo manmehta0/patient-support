@@ -7,9 +7,12 @@ import { ClinicalTrials } from "./ClinicalTrials";
 import { TreatmentRecommendations } from "./TreatmentRecommandations";
 import { WearableDataAnalysis } from "./WearableDataAnalysis";
 import { FeedbackAnalysis } from "./FeedbackAnalysis";
+import { FaRobot } from 'react-icons/fa';
+import Chatbot from "./ChatBot";
 
 export const Dashboard = ({ patientId }) => {
   const [dashboardData, setDashboardData] = useState(null);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -31,7 +34,6 @@ export const Dashboard = ({ patientId }) => {
   return (
     <div className='container mx-auto px-4 py-8'>
       <h1 className='text-3xl font-bold mb-6'>Patient Dashboard</h1>
-
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         <PatientInfo patientInfo={dashboardData.patient_info} />
         <OutcomePrediction prediction={dashboardData.outcome_prediction} />
@@ -40,6 +42,13 @@ export const Dashboard = ({ patientId }) => {
         <WearableDataAnalysis wearableData={dashboardData.wearable_data_analysis} />
         <FeedbackAnalysis feedback={dashboardData.recent_feedback} sentiment={dashboardData.sentiment_analysis} />
       </div>
+      <button onClick={() => setIsChatbotOpen(!isChatbotOpen)} className='fixed bottom-4 right-4 p-3 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 focus:outline-none flex items-center justify-center'>
+        <FaRobot className='text-2xl' />
+        <span className='ml-2'>Ask Gini</span>
+      </button>
+
+      {/* Chatbot Flyout */}
+      <div className={`fixed bottom-3 right-0 h-[95%] transition-transform duration-300 ease-in-out transform ${isChatbotOpen ? 'translate-x-0' : 'translate-x-full'} bg-gray-800 border border-gray-700 rounded-lg shadow-lg`}>{isChatbotOpen && <Chatbot onClose={() => setIsChatbotOpen(false)} />}</div>
     </div>
   );
 };
