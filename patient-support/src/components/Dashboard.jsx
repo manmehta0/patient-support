@@ -15,7 +15,7 @@ export const Dashboard = ({ patientId }) => {
     const fetchDashboardData = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/patient-dashboard?patient_id=${patientId}`);
-        console.log('response', response.data);
+        console.log('response -> ', response.data);
         setDashboardData(response.data);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
