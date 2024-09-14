@@ -24,7 +24,7 @@ NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 headers = {
     'X-API-KEY': os.environ['CLIENT_SUPPORT_API_KEY']
 }
-
+##
 def convert_int64_to_int(data):
     """ Recursively convert int64 values to int. """
     if isinstance(data, dict):
