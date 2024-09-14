@@ -1,0 +1,18 @@
+{
+  "family": "cancer-support-task",
+  "containerDefinitions": [
+    {
+      "name": "api-container",
+      "image": "894393442446.dkr.ecr.us-west-1.amazonaws.com/cancer-patient-support/api:latest",
+      "memory": 512,
+      "cpu": 256,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5000,
+          "hostPort": 5000
+        }
+      ]
+    }
+  ]
+}

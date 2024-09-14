@@ -1,0 +1,18 @@
+{
+  "family": "cancer-support-task",
+  "containerDefinitions": [
+    {
+      "name": "nginx-container",
+      "image": "894393442446.dkr.ecr.us-west-1.amazonaws.com/cancer-patient-support/frontend:latest",
+      "memory": 512,
+      "cpu": 256,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ]
+    }
+  ]
+}
