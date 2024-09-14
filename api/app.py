@@ -23,10 +23,11 @@ CORS(app)
 NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 
 headers = {
-    'X-API-KEY': '67NVt1J4W7a0bLNPyrBZTBiUrOnA19v1plT2mIOi'
+    'X-API-KEY': os.environ['CLIENT_API_KEY']
 }
 # Set your OpenAI API key
-openai.api_key = 'sk-QDq1L3vT-thrbNevtS2VB4xwZWrEKC10YLUdcTlT-UT3BlbkFJo1-BXzXXK0CFygCjAMeVmJjvx_gOoMYgHFfSbsloQA'
+openai.api_key = os.environ['OPEN_API_KEY']
+
 
 @app.route('/api/chat', methods=['POST'])
 def chat():

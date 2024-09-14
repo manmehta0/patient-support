@@ -31,6 +31,7 @@ const Chatbot = ({ onClose }) => {
     <div className='relative flex flex-col h-full w-96 max-w-md bg-[#F3F3F3] text-white border border-purple-700 rounded-lg shadow-lg'>
       <div className='flex-shrink-0 p-2 bg-purple-600 text-white rounded-t-lg font-semibold flex items-center justify-between'>
         <span>Ask Gini</span>
+        <FaRobot className='text-xl' />
         <button onClick={onClose} className='text-white hover:text-gray-300'>
           <FaTimes className='text-xl' />
         </button>
