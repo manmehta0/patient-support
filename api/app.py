@@ -15,6 +15,7 @@ import joblib
 import os
 import random
 import json
+import openai
 
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +25,28 @@ NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 headers = {
     'X-API-KEY': '67NVt1J4W7a0bLNPyrBZTBiUrOnA19v1plT2mIOi'
 }
+# Set your OpenAI API key
+openai.api_key = 'sk-QDq1L3vT-thrbNevtS2VB4xwZWrEKC10YLUdcTlT-UT3BlbkFJo1-BXzXXK0CFygCjAMeVmJjvx_gOoMYgHFfSbsloQA'
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.json
+    prompt = data.get('prompt')
+
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",  
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7
+        )
+        choices = response.choices
+        chat_completion = choices[0]
+        message = chat_completion.message
+        print(message)
+        return jsonify({'response': message.content})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'response': 'Sorry, something went wrong.'}), 500
 
 def convert_int64_to_int(data):
     """ Recursively convert int64 values to int. """
