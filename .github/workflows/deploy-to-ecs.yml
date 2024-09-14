@@ -1,0 +1,50 @@
+# .github/workflows/deploy-to-ecs.yml
+
+name: Deploy to ECS
+run-name: Deploy - ${{ github.ref_name }} - ${{ github.run_number }}
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Images"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-1
+        
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Update ECS API Task Definition
+      run: |
+        aws ecs register-task-definition \
+          --cli-input-json file://task-definitions/ecs-task-definition-api.json
+
+    - name: Update ECS Frontend Task Definition
+      run: |
+        aws ecs register-task-definition \
+          --cli-input-json file://task-definitions/ecs-task-definition-frontend.json
+
+    - name: Update ECS API Service
+      run: |
+        aws ecs update-service \
+          --cluster ${{ secrets.ECS_CLUSTER_NAME }} \
+          --service ${{ secrets.ECS_SERVICE_API_NAME }} \
+          --force-new-deployment
+
+    - name: Update ECS Frontend Service
+      run: |
+        aws ecs update-service \
+          --cluster ${{ secrets.ECS_CLUSTER_NAME }} \
+          --service ${{ secrets.ECS_SERVICE_FRONTEND_NAME }} \
+          --force-new-deployment
