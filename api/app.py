@@ -22,7 +22,7 @@ CORS(app)
 NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 
 headers = {
-    'X-API-KEY': os.environ['CLIENT_API_KEY']
+    'X-API-KEY': '67NVt1J4W7a0bLNPyrBZTBiUrOnA19v1plT2mIOi'
 }
 
 def convert_int64_to_int(data):
