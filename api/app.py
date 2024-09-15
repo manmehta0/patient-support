@@ -24,10 +24,10 @@ print('os.environ keys -> ', os.environ)
 NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 
 headers = {
-    'X-API-KEY': os.environ.get['CLIENT_API_KEY']
+    'X-API-KEY': os.environ['CLIENT_API_KEY']
 }
 # Set your OpenAI API key
-openai.api_key = os.environ.get['OPEN_API_KEY']
+openai.api_key = os.environ['OPEN_API_KEY']
 
 
 @app.route('/api/chat', methods=['POST'])

@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - main
+env:
+  CLIENT_API_KEY: '${{ secrets.CLIENT_API_KEY }}'
+  OPEN_API_KEY: '${{ secrets.OPEN_API_KEY }}'
 
 jobs:
   build:
