@@ -9,7 +9,7 @@ export const AppRouter = ({ patientId }) => {
         <nav className='bg-blue-600 text-white p-4'>
           <div className='container mx-auto'>
             <Link to='/' className='text-2xl font-bold'>
-              Cancer Patient Support
+              <image src="./images/logo.png" width={24} height={24} />Cancer Patient Support
             </Link>
           </div>
         </nav>

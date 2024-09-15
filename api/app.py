@@ -19,7 +19,6 @@ import openai
 
 app = Flask(__name__)
 CORS(app)
-print('os.environ keys -> ', os.environ)
 
 NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 
