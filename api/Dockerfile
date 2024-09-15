@@ -3,6 +3,9 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.9-slim
 
+ENV CLIENT_API_KEY=${CLIENT_API_KEY}
+ENV OPEN_API_KEY=${OPEN_API_KEY}
+
 # Set the working directory
 WORKDIR /app
 
