@@ -15,6 +15,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: dev
+    env:
+      CLIENT_API_KEY: '${{ secrets.CLIENT_API_KEY }}'
+      OPEN_API_KEY: '${{ secrets.OPEN_API_KEY }}'
 
     steps:
     - name: Configure AWS Credentials
