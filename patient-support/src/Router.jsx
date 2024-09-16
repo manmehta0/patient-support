@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
-import Logo from './images/logo.png';
+import Logo from './assets/logo.png';
 
 
 export const AppRouter = ({ patientId }) => {
