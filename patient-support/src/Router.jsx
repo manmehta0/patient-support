@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
+import Logo from './images/logo.png';
 
 
 export const AppRouter = ({ patientId }) => {
@@ -9,7 +10,8 @@ export const AppRouter = ({ patientId }) => {
         <nav className='bg-blue-600 text-white p-4'>
           <div className='container mx-auto'>
             <Link to='/' className='text-2xl font-bold'>
-              <image src="./images/logo.png" width={24} height={24} />Cancer Patient Support
+              <image src={Logo} width={24} height={24} />
+              Cancer Patient Support
             </Link>
           </div>
         </nav>
