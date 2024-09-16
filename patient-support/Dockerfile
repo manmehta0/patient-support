@@ -21,6 +21,7 @@ RUN npm run build
 # Serve the app using NGINX
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/build/media /usr/share/nginx/html/media
 
 # Copy the custom NGINX configuration
 COPY ./nginx/default.conf /etc/nginx/nginx.conf
