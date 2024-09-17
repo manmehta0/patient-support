@@ -2,15 +2,14 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-ro
 import { Dashboard } from './components/Dashboard';
 import Logo from './assets/images/logo.png';
 
-
 export const AppRouter = ({ patientId }) => {
   return (
     <Router>
       <div className='min-h-screen bg-gray-100'>
         <nav className='bg-blue-600 text-white p-4'>
           <div className='container mx-auto'>
-            <Link to='/' className='text-2xl font-bold'>
-              <image src={Logo} width={24} height={24} />
+            <Link to='/' className='flex text-2xl font-bold gap-2'>
+              <img src={Logo} alt='logo' width={24} height={24} />
               Cancer Patient Support
             </Link>
           </div>
