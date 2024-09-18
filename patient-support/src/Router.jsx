@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
 import Logo from './assets/images/logo.png';
+import HomeDashboard from './components/Homedashboard';
 
 export const AppRouter = ({ patientId }) => {
   return (
@@ -16,9 +17,9 @@ export const AppRouter = ({ patientId }) => {
         </nav>
         <Switch>
           <Route exact path='/'>
-            <Redirect to='/dashboard' />
+            <HomeDashboard />
           </Route>
-          <Route exact path='/dashboard'>
+          <Route exact path='/patientdashboard'>
             <Dashboard patientId={patientId} />
           </Route>
           {/* Add more routes here as needed */}

@@ -28,27 +28,6 @@ headers = {
 # Set your OpenAI API key
 openai.api_key = os.environ['OPEN_API_KEY']
 
-
-@app.route('/api/chat', methods=['POST'])
-def chat():
-    data = request.json
-    prompt = data.get('prompt')
-
-    try:
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",  
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7
-        )
-        choices = response.choices
-        chat_completion = choices[0]
-        message = chat_completion.message
-        print(message)
-        return jsonify({'response': message.content})
-    except Exception as e:
-        print(f"Error: {e}")
-        return jsonify({'response': 'Sorry, something went wrong.'}), 500
-
 def convert_int64_to_int(data):
     """ Recursively convert int64 values to int. """
     if isinstance(data, dict):
@@ -116,10 +95,11 @@ def get_trials(cancer_type, zip_code):
     
     return jsonify(trials)
 
-def get_clinical_trials(cancer_type, zip_code):
+
+def get_clinical_trials(cancer_type, location, treatment_phase):
     params = {
         "brief_title._fulltext": cancer_type,  # Updated parameter names according to hypothetical v2 changes
-        "sites.org_postal_code": zip_code,
+        "sites.org_postal_code": location,
         "current_trial_status": "Active",
         "current_trial_status_date_lte": datetime.now().strftime("%Y-%m-%d"),  # Example of possible new parameter for record verification date
         "size": 10  # Assuming 'size' might be renamed to 'limit'
@@ -268,13 +248,14 @@ def analyze_wearable_data(patient_id):
 
 @app.route('/api/clinical-trials', methods=['GET'])
 def clinical_trials():
-    cancer_type = request.args.get('cancer_type')
-    zip_code = request.args.get('zip_code')
-    if not cancer_type or not zip_code:
+    cancer_type = request.args.get('cancerType')
+    location = request.args.get('location')
+    treatment_phase = request.args.get('treatmentPhase')
+    if not cancer_type or not location:
         return jsonify({"error": "Both cancer_type and zip_code are required"}), 400
 
-    trials = get_clinical_trials(cancer_type, zip_code)
-    return jsonify(trials)
+    trials = get_clinical_trials(cancer_type, location, treatment_phase)
+    return jsonify({'trials': trials})
 
 
 @app.route('/api/treatment-info', methods=['GET'])
@@ -341,7 +322,7 @@ def patient_dashboard():
     patient_data = MOCK_PATIENT_DATA[MOCK_PATIENT_DATA['patient_id'] == int(
         patient_id)].iloc[0]
 
-    clinical_trials = get_clinical_trials(patient_data['cancer_type'], '21202')[
+    clinical_trials = get_clinical_trials(patient_data['cancer_type'], '21202', patient_data['treatment'])[
         :3]  
     # print('trials', get_trials(patient_data['cancer_type'], '21202')[:3])
     treatment_info = get_treatment_info(patient_data['cancer_type'])
@@ -367,6 +348,53 @@ def patient_dashboard():
     }
 
     return jsonify(dashboard)
+
+
+
+@app.route('/api/onboard', methods=['POST'])
+def onboard_patient():
+    data = request.form
+    name = data.get('name')
+    cancer_type = data.get('cancerType')
+    stage = data.get('stage')
+    current_treatment = data.get('currentTreatment')
+    medical_records = request.files.get('medicalRecords')
+
+    # Save patient data to the database (pseudo-code)
+    # save_patient_data(name, cancer_type, stage, current_treatment, medical_records)
+
+    return jsonify({'message': 'Patient profile created successfully!'}), 201
+
+
+@app.route('/api/dashboard', methods=['GET'])
+def get_dashboard_data():
+    # Fetch relevant clinical trials, articles, and support groups (pseudo-code)
+    trials = []  # Fetch from database
+    articles = []  # Fetch from database
+    support_groups = []  # Fetch from database
+
+    return jsonify({'trials': trials, 'articles': articles, 'supportGroups': support_groups})
+
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.json
+    prompt = data.get('prompt')
+
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7
+        )
+        choices = response.choices
+        chat_completion = choices[0]
+        message = chat_completion.message
+        print(message)
+        return jsonify({'response': message.content})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({'response': 'Sorry, something went wrong.'}), 500
 
 # All other functions for data processing and model training...
 
