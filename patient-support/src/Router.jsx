@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
 import Logo from './assets/images/logo.png';
 import HomeDashboard from './components/Homedashboard';

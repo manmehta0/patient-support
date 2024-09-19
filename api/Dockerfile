@@ -18,6 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Flask app
 COPY app.py .
+COPY package package
 
 # Expose the port on which the Flask app runs
 EXPOSE 5000
