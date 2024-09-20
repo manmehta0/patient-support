@@ -12,6 +12,16 @@ NCI_API_BASE_URL = "https://clinicaltrialsapi.cancer.gov/api/v2/"
 headers = {'X-API-KEY': os.environ['CLIENT_API_KEY']}
 
 
+def get_studies(nct_id):
+    """
+    Fetch studies from the NCI API based on nct id for a given trial.
+    """
+    response = requests.get("https://clinicaltrials.gov/api/v2/studies/" + nct_id,
+                            headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    return []
+
 def get_clinical_trials(cancer_type, location, treatment_phase):
     """
     Fetch clinical trials from the NCI API based on cancer type, location, and treatment phase.

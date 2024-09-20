@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from package.services import get_clinical_trials, get_treatment_info
+from package.services import get_clinical_trials, get_treatment_info, get_studies
 from package.models import (
     train_outcome_prediction_model, predict_outcome, train_sentiment_analysis_model,
     analyze_sentiment, train_recommendation_model, get_treatment_recommendations,
@@ -16,6 +16,14 @@ from package.openai_service import generate_chat_response
 app = Flask(__name__)
 CORS(app)
 
+
+@app.route('/api/studies/<string:nct_id>', methods=['GET'])
+def get_study(nct_id):
+    study = get_studies(nct_id)
+    if study:
+        return jsonify(study), 200
+    else:
+        return jsonify({"error": "Study not found"}), 404
 
 @app.route('/api/clinical-trials', methods=['GET'])
 def clinical_trials():
