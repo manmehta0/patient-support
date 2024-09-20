@@ -21,7 +21,7 @@ const HomeDashboard = () => {
   }, []);
 
   return (
-    <div className='p-4 bg-gray-100'>
+    <div className='p-4 bg-[#d7dbe2]'>
       <ClinicalTrialsSearch />
       {data.length && (
         <>

@@ -7,8 +7,8 @@ export const AppRouter = ({ patientId }) => {
   return (
     <Router>
       <div className='min-h-screen bg-gray-100'>
-        <nav className='bg-purple-500 text-white p-4'>
-          <div className='container mx-auto'>
+        <nav className='text-[#4d0060] bg-white p-4'>
+          <div className='container'>
             <Link to='/' className='flex text-2xl font-bold gap-2'>
               <img className='mb-[-5px]' src={Logo} alt='logo' width={32} height={32} />
               Cancer Patient Support

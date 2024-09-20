@@ -13,7 +13,7 @@ const StudyDetails = ({ data }) => {
   const showResults = !isEmpty(resultsSection);
 
   return (
-    <div className='p-6 bg-white rounded-lg shadow-md'>
+    <div className='p-6 bg-white'>
       <h1 className='text-2xl font-bold mb-4'>Study Details</h1>
 
       {/* Protocol Section */}

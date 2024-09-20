@@ -1,14 +1,14 @@
 // src/components/ClinicalTrialsSearch.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../constants';
+import { API_BASE_URL, cancerTypes } from '../constants';
 import { ClinicalTrials } from './ClinicalTrials';
 import StudyDetailsModal from './StudyDetails/StudyDetailModal';
+import { DropdownSelect } from './Dropdown';
 
 const ClinicalTrialsSearch = () => {
   const [cancerType, setCancerType] = useState('');
   const [location, setLocation] = useState('');
-  const [treatmentPhase, setTreatmentPhase] = useState('');
   const [trials, setTrials] = useState([]);
   const [matchScore, setMatchScore] = useState(0);
   const [study, setStudy] = useState({});
@@ -33,8 +33,7 @@ const ClinicalTrialsSearch = () => {
       const response = await axios.get(`${API_BASE_URL}/clinical-trials`, {
         params: {
           cancerType,
-          location,
-          treatmentPhase,
+          location
         },
       });
       setTrials(response.data.trials);
@@ -55,9 +54,8 @@ const ClinicalTrialsSearch = () => {
       <section className='flex flex-col md:flex-row rounded-lg shadow-md gap-4'>
         <article className='max-w-sm p-4 bg-gray-100'>
           <h2 className='text-xl font-semibold'>Search Clinical Trials</h2>
-          <input type='text' placeholder='Cancer Type' value={cancerType} onChange={(e) => setCancerType(e.target.value)} className='w-full max-w-sm p-2 mt-2 border border-gray-300 rounded-lg' />
-          <input type='text' placeholder='Location' value={location} onChange={(e) => setLocation(e.target.value)} className='w-full max-w-sm p-2 mt-2 border border-gray-300 rounded-lg' />
-          <input type='text' placeholder='Treatment Phase' value={treatmentPhase} onChange={(e) => setTreatmentPhase(e.target.value)} className='w-full max-w-sm p-2 mt-2 border border-gray-300 rounded-lg' />
+          <DropdownSelect data={cancerTypes} onChange={setCancerType} />
+          <input type='text' placeholder='Location (zip code)' value={location} onChange={(e) => setLocation(e.target.value)} className='w-full max-w-sm p-2 mt-2 border border-gray-300 rounded-lg' />
           <button onClick={handleSearch} className='mt-4 w-full max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
             Search
           </button>
