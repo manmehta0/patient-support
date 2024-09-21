@@ -1,5 +1,4 @@
-export const API_BASE_URL = `${process.env.REACT_APP_API_HOST ?? ''}/api`;
-
+export const API_BASE_URL = `${import.meta.env.VITE_APP_API_HOST ?? ''}/api`;
 export const cancerTypes = [
   {
     value: 'Acute Lymphoblastic Leukemia (ALL)',

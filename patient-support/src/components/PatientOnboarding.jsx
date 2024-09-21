@@ -1,6 +1,5 @@
 // src/components/PatientOnboarding.js
 import React, { useState } from 'react';
-import axios from 'axios';
 import { API_BASE_URL } from '../constants';
 
 const PatientOnboarding = () => {
@@ -29,7 +28,13 @@ const PatientOnboarding = () => {
     });
 
     try {
-      await axios.post(`${API_BASE_URL}/onboard`, form);
+      await fetch(`${API_BASE_URL}/onboard`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form), // Assuming `form` is a JavaScript object
+      });
       alert('Patient profile created successfully!');
     } catch (error) {
       console.error('Error during onboarding:', error);

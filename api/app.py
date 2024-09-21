@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from package.services import get_clinical_trials, get_treatment_info, get_studies
+from package.services import get_clinical_trials, get_treatment_info, get_studies, get_autocomplete
 from package.models import (
     train_outcome_prediction_model, predict_outcome, train_sentiment_analysis_model,
     analyze_sentiment, train_recommendation_model, get_treatment_recommendations,
@@ -16,6 +16,20 @@ from package.openai_service import generate_chat_response
 app = Flask(__name__)
 CORS(app)
 
+
+@app.route('/api/autocomplete', methods=['GET'])
+def autocomplete():
+    input_text = request.args.get('input')
+    if not input_text:
+        return jsonify({'error': 'Missing input parameter'}), 400
+    try:
+        auto_complete = get_autocomplete(input_text)
+        if auto_complete:
+            return jsonify(auto_complete), 200
+        else:
+            return jsonify({"error': 'Failed to contact Google Places API"}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/studies/<string:nct_id>', methods=['GET'])
 def get_study(nct_id):

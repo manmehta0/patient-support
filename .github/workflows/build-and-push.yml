@@ -15,6 +15,7 @@ jobs:
     env:
       CLIENT_API_KEY: '${{ secrets.CLIENT_API_KEY }}'
       OPEN_API_KEY: '${{ secrets.OPEN_API_KEY }}'
+      GOOGLE_MAPS_API_KEY: '${{ secrets.GOOGLE_MAPS_API_KEY }}'
 
     steps:
     - name: Configure AWS Credentials

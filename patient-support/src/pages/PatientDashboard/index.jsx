@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { API_BASE_URL } from "../constants";
+import { API_BASE_URL } from "../../constants";
 import { PatientInfo } from "./PatientInfo";
 import { OutcomePrediction } from "./OutcomePrediction";
 import { ClinicalTrials } from "./ClinicalTrials";
@@ -10,16 +9,16 @@ import { FeedbackAnalysis } from "./FeedbackAnalysis";
 import { FaRobot } from 'react-icons/fa';
 import Chatbot from "./ChatBot";
 
-export const Dashboard = ({ patientId }) => {
+export const PatientDashboard = ({ patientId }) => {
   const [dashboardData, setDashboardData] = useState(null);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/patient-dashboard?patient_id=${patientId}`);
-        console.log('response -> ', response.data);
-        setDashboardData(response.data);
+        const response = await fetch(`${API_BASE_URL}/patient-dashboard?patient_id=${patientId}`);
+        const data = await response.json();
+        setDashboardData(data);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }

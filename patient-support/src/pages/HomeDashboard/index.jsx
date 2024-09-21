@@ -1,7 +1,6 @@
 // src/components/HomeDashboard.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { API_BASE_URL } from '../constants';
+import { API_BASE_URL } from '../../constants';
 import ClinicalTrialsSearch from './ClinicalTrialsSearch';
 
 const HomeDashboard = () => {
@@ -10,8 +9,9 @@ const HomeDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/dashboard`);
-        setData(response.data);
+        const response = await fetch(`${API_BASE_URL}/dashboard`);
+        const data = await response.json();
+        setData(data);
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
       }
@@ -23,7 +23,7 @@ const HomeDashboard = () => {
   return (
     <div className='p-4 bg-[#d7dbe2]'>
       <ClinicalTrialsSearch />
-      {data.length && (
+      {data && data.length && data.trials && (
         <>
           <h3 className='mt-4'>Relevant Clinical Trials</h3>
           <ul>

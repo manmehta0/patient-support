@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { Dashboard } from './components/Dashboard';
+import { PatientDashboard } from './pages/PatientDashboard';
 import Logo from './assets/images/logo.png';
-import HomeDashboard from './components/Homedashboard';
+import HomeDashboard from './pages/HomeDashboard';
 
 export const AppRouter = ({ patientId }) => {
   return (
@@ -20,7 +20,7 @@ export const AppRouter = ({ patientId }) => {
             <HomeDashboard />
           </Route>
           <Route exact path='/patientdashboard'>
-            <Dashboard patientId={patientId} />
+            <PatientDashboard patientId={patientId} />
           </Route>
           {/* Add more routes here as needed */}
         </Switch>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import 'tailwindcss/tailwind.css'; // Ensure Tailwind CSS is imported
-import { API_BASE_URL } from '../constants';
+import { API_BASE_URL } from '../../constants';
 import { FaRobot, FaTimes } from 'react-icons/fa'; // Fancy icon for the button
 
 const Chatbot = ({ onClose }) => {
@@ -16,10 +15,16 @@ const Chatbot = ({ onClose }) => {
 
     try {
       // Send request to backend API
-      const response = await axios.post(`${API_BASE_URL}/chat`, { prompt: input });
-
+      const response = await fetch(`${API_BASE_URL}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: input }), // Assuming `form` is a JavaScript object
+      });
+      const data = await response.json();
       // Add AI's response
-      setMessages([...messages, { text: input, type: 'user' }, { text: response.data.response, type: 'ai' }]);
+      setMessages([...messages, { text: input, type: 'user' }, { text: data.response, type: 'ai' }]);
     } catch (error) {
       console.error('Error fetching response from backend:', error);
     }
