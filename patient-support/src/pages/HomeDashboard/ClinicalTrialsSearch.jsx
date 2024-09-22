@@ -6,6 +6,8 @@ import { DropdownSelect } from '../../components/Dropdown';
 import LocationAutocomplete from '../../components/LocationAutoComplete';
 import StudyDetails from '../../components/StudyDetails';
 import { Spinner } from '../../shadcn/ui/spinner';
+import { Button } from '../../shadcn/ui/button';
+import { Popover, PopoverContent } from '../../shadcn/ui/popover';
 
 const ClinicalTrialsSearch = () => {
   const [cancerType, setCancerType] = useState('');
@@ -76,16 +78,15 @@ const ClinicalTrialsSearch = () => {
     <section className='flex w-full md:flex-col rounded-lg shadow-md relative'>
       <section className='flex w-full flex-col md:flex-row rounded-lg shadow-md gap-4'>
         <article className='w-full md:max-w-sm p-4 bg-gray-100'>
-          <h2 className='text-xl font-semibold'>Search Clinical Trials</h2>
+          <h2 className='text-xl font-semibold pb-2'>Search Clinical Trials</h2>
           <DropdownSelect data={cancerTypes} onChange={setCancerType} />
-          {errors.cancerType && <p className='text-red-500'>{errors.cancerType}</p>}
+          {errors.cancerType && <p className='text-red-700 text-sm'>{errors.cancerType}</p>}
 
           {/* Use the new LocationAutocomplete component */}
           <LocationAutocomplete location={location} setLocation={setLocation} error={errors.location} setError={(error) => setErrors({ ...errors, location: error })} />
-
-          <button onClick={handleSearch} className='mt-4 w-full md:max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
+          <Button onClick={handleSearch} className='mt-4 w-full md:max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
             Search
-          </button>
+          </Button>
         </article>
         <article className='p-4 bg-gray-100'>
           <h2 className='text-xl font-semibold pb-2'>Match Score: {matchScore}</h2>

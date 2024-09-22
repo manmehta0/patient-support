@@ -2,7 +2,7 @@
 FROM node:18-alpine AS build
 
 # Build argument for the Google Maps API Key
-ARG VITE_GOOGLE_MAPS_API_KEY
+ARG VITE_GOOGLE_MAPS_API_KEY=$VITE_GOOGLE_MAPS_API_KEY
 
 # Set environment variables during the build process
 ENV VITE_GOOGLE_MAPS_API_KEY=$VITE_GOOGLE_MAPS_API_KEY

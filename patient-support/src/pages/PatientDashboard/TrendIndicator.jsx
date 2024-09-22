@@ -4,11 +4,11 @@ export const TrendIndicator = ({ trend }) => {
   const getColor = () => {
     switch (trend) {
       case 'increasing':
-        return 'text-green-500';
+        return 'text-green-700';
       case 'decreasing':
-        return 'text-red-500';
+        return 'text-red-700';
       default:
-        return 'text-gray-500';
+        return 'text-gray-700';
     }
   };
 
