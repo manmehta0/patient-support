@@ -1,5 +1,3 @@
-# .github/workflows/build-and-push.yml
-
 name: Build and Push Docker Images
 run-name: Build - ${{ github.ref_name }} - ${{ github.run_number }}
 
@@ -13,33 +11,41 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     env:
-      CLIENT_API_KEY: '${{ secrets.CLIENT_API_KEY }}'
-      OPEN_API_KEY: '${{ secrets.OPEN_API_KEY }}'
-      VITE_GOOGLE_MAPS_API_KEY: '${{ secrets.GOOGLE_MAPS_API_KEY }}'
+      CLIENT_API_KEY: ${{ secrets.CLIENT_API_KEY }}
+      OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+      VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
     steps:
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-1
+      # Step 1: Set up AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-1
 
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Step 2: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      # Step 3: Set up Docker Buildx for advanced Docker builds
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Log in to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v1
+      # Step 4: Log in to Amazon ECR to push Docker images
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build and push API Docker image
-      run: |
-        docker build -t ${{ secrets.ECR_API_REPO_URI }}:latest -f api/Dockerfile api/
-        docker push ${{ secrets.ECR_API_REPO_URI }}:latest
+      # Step 5: Build and push API Docker image
+      - name: Build and push API Docker image
+        working-directory: api
+        run: |
+          docker build -t ${{ secrets.ECR_API_REPO_URI }}:latest .
+          docker push ${{ secrets.ECR_API_REPO_URI }}:latest
 
-    - name: Build and push Frontend Docker image
-      run: |
-        docker build -t ${{ secrets.ECR_FRONTEND_REPO_URI }}:latest -f patient-support/Dockerfile patient-support/
-        docker push ${{ secrets.ECR_FRONTEND_REPO_URI }}:latest
+      # Step 6: Build and push Frontend Docker image
+      - name: Build and push Frontend Docker image
+        working-directory: patient-support
+        run: |
+          docker build -t ${{ secrets.ECR_FRONTEND_REPO_URI }}:latest .
+          docker push ${{ secrets.ECR_FRONTEND_REPO_URI }}:latest

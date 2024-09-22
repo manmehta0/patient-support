@@ -1,34 +1,38 @@
-# patient-support/Dockerfile
+# Stage 1: Build the application using Node.js
+FROM node:18-alpine AS build
 
-# Use the official Node.js image from the Docker Hub
-FROM node:18 AS build
-# Define build arguments for environment variables
-ARG VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+# Build argument for the Google Maps API Key
+ARG VITE_GOOGLE_MAPS_API_KEY
 
 # Set environment variables during the build process
-ENV VITE_GOOGLE_MAPS_API_KEY=${VITE_GOOGLE_MAPS_API_KEY}
+ENV VITE_GOOGLE_MAPS_API_KEY=$VITE_GOOGLE_MAPS_API_KEY
+
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy only package.json and package-lock.json to install dependencies
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies (using --frozen-lockfile to ensure consistent builds)
+RUN npm ci --frozen-lockfile
 
-# Copy the app files
+# Copy the rest of the app source files
 COPY . .
 
-# Build the app
+# Build the application
 RUN npm run build
 
-# Serve the app using NGINX
+# Stage 2: Serve the built app with NGINX
 FROM nginx:alpine
+
+# Copy the build artifacts from the Node.js build stage
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Copy the custom NGINX configuration
+# Copy custom NGINX configuration
 COPY ./nginx/default.conf /etc/nginx/nginx.conf
 
+# Expose port 80 for serving the application
 EXPOSE 80
 
+# Start NGINX in the foreground
 CMD ["nginx", "-g", "daemon off;"]

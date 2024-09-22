@@ -13,7 +13,7 @@ headers = {'X-API-KEY': os.environ['CLIENT_API_KEY']}
 
 GOOGLE_PLACES_API_URL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
 GOOGLE_GEOCODING_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json'
-GOOGLE_API_KEY = os.environ['GOOGLE_MAPS_API_KEY']
+GOOGLE_API_KEY = os.environ['VITE_GOOGLE_MAPS_API_KEY']
 
 
 def get_autocomplete(input_text):
