@@ -2,7 +2,11 @@
 
 # Use the official Node.js image from the Docker Hub
 FROM node:18 AS build
+# Define build arguments for environment variables
+ARG VITE_GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}
 
+# Set environment variables during the build process
+ENV VITE_GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}
 # Set the working directory
 WORKDIR /app
 

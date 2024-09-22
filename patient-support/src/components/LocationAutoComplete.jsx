@@ -1,52 +1,53 @@
 import React, { useState } from 'react';
-import { API_BASE_URL } from '../constants';
+import { useLoadScript, Autocomplete } from '@react-google-maps/api';
+
+const libraries = ['places'];
 
 const LocationAutocomplete = ({ location, setLocation, error, setError }) => {
-  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState([]);
+  const [autocomplete, setAutocomplete] = useState(null);
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY, // Replace with your Google API key
+    libraries,
+  });
+  const onLoad = (autoC) => {
+    setAutocomplete(autoC);
+  };
+  const onPlaceChanged = () => {
+    if (autocomplete !== null) {
+      const place = autocomplete.getPlace();
 
-  const handleAutocomplete = async (input) => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/autocomplete?input=${input}`);
+      if (place.address_components) {
+        const postalCodeComponent = place.address_components.find((component) => component.types.includes('postal_code'));
+        const postalCode = postalCodeComponent ? postalCodeComponent.long_name : '';
 
-      if (response.status === 200) {
-        const data = await response.json();
-        setAutocompleteSuggestions(data.predictions);
+        if (postalCode) {
+          setLocation(postalCode);
+          setError(''); // Clear any previous errors
+        } else {
+          setError('Selected location must have a postal code');
+        }
+      } else {
+        setError('Invalid place selected, try again');
       }
-    } catch (error) {
-      console.error('Error fetching autocomplete suggestions:', error);
+    } else {
+      console.log('Autocomplete is not loaded yet!');
     }
   };
 
-  const handleLocationChange = (e) => {
-    const input = e.target.value;
-    setLocation(input);
+  if (loadError) {
+    return <div>Error loading maps</div>;
+  }
 
-    if (input.length > 2) {
-      handleAutocomplete(input);
-    }
-  };
-
-  const handleSelectSuggestion = (postalCode) => {
-    setLocation(postalCode);
-    setAutocompleteSuggestions([]); // Clear the suggestions once a postal code is selected
-    setError(''); // Clear any previous error
-  };
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='w-full'>
-      <input type='text' placeholder='Location (zip code)' value={location} onChange={handleLocationChange} className='w-full max-w-sm p-2 mt-2 border border-gray-300 rounded-lg' />
+      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} options={{ types: ['geocode'] }}>
+        <input type='text' placeholder='Location (zip code)' value={location} onChange={(e) => setLocation(e.target.value)} className='w-full max-w-sm p-2 mt-2 border border-gray-300 rounded-lg' />
+      </Autocomplete>
       {error && <p className='text-red-500'>{error}</p>}
-
-      {/* Render autocomplete suggestions */}
-      {autocompleteSuggestions.length > 0 && (
-        <ul className='bg-white border border-gray-300 rounded-md mt-2'>
-          {autocompleteSuggestions.map((suggestion, index) => (
-            <li key={index} className='p-2 cursor-pointer hover:bg-gray-200' onClick={() => handleSelectSuggestion(suggestion.postal_code)}>
-              {suggestion.description} ({suggestion.postal_code})
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };
