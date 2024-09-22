@@ -15,12 +15,12 @@ export function DropdownSelect({ data, onChange }) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant='outline' role='combobox' aria-expanded={open} className='w-full max-w-md justify-between'>
+        <Button variant='outline' role='combobox' aria-expanded={open} className='w-full md:max-w-md justify-between'>
           {value ? data.find((item) => item.value === value)?.label : 'Cancer Type'}
           <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-full max-w-md p-0'>
+      <PopoverContent className='w-full w-full max-w-md p-0'>
         <Command>
           <CommandInput placeholder='Search item...' />
           <CommandList>

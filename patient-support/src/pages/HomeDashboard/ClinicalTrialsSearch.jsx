@@ -5,6 +5,7 @@ import PopUpModal from '../../components/PopupModal';
 import { DropdownSelect } from '../../components/Dropdown';
 import LocationAutocomplete from '../../components/LocationAutoComplete';
 import StudyDetails from '../../components/StudyDetails';
+import { Spinner } from '../../shadcn/ui/spinner';
 
 const ClinicalTrialsSearch = () => {
   const [cancerType, setCancerType] = useState('');
@@ -14,6 +15,7 @@ const ClinicalTrialsSearch = () => {
   const [study, setStudy] = useState({});
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [errors, setErrors] = useState({ cancerType: '', location: '' });
+  const [isLoading, showLoader] = useState(false);
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
@@ -51,7 +53,7 @@ const ClinicalTrialsSearch = () => {
 
   const handleSearch = async () => {
     if (!validateFields()) return;
-
+    showLoader(true);
     setStudy({});
     try {
       const response = await fetch(`${API_BASE_URL}/clinical-trials?cancerType=${cancerType}&location=${location}`);
@@ -60,6 +62,8 @@ const ClinicalTrialsSearch = () => {
       calculateMatchScore(data.trials);
     } catch (error) {
       console.error('Error fetching trials:', error);
+    } finally {
+      showLoader(false)
     }
   };
 
@@ -69,9 +73,9 @@ const ClinicalTrialsSearch = () => {
   };
 
   return (
-    <section className='flex md:flex-col rounded-lg shadow-md relative'>
-      <section className='flex flex-col md:flex-row rounded-lg shadow-md gap-4'>
-        <article className='max-w-md p-4 bg-gray-100'>
+    <section className='flex w-full md:flex-col rounded-lg shadow-md relative'>
+      <section className='flex w-full flex-col md:flex-row rounded-lg shadow-md gap-4'>
+        <article className='w-full md:max-w-sm p-4 bg-gray-100'>
           <h2 className='text-xl font-semibold'>Search Clinical Trials</h2>
           <DropdownSelect data={cancerTypes} onChange={setCancerType} />
           {errors.cancerType && <p className='text-red-500'>{errors.cancerType}</p>}
@@ -79,13 +83,13 @@ const ClinicalTrialsSearch = () => {
           {/* Use the new LocationAutocomplete component */}
           <LocationAutocomplete location={location} setLocation={setLocation} error={errors.location} setError={(error) => setErrors({ ...errors, location: error })} />
 
-          <button onClick={handleSearch} className='mt-4 w-full max-w-md p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
+          <button onClick={handleSearch} className='mt-4 w-full md:max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
             Search
           </button>
         </article>
         <article className='p-4 bg-gray-100'>
           <h2 className='text-xl font-semibold pb-2'>Match Score: {matchScore}</h2>
-          <ClinicalTrials getStudy={getStudy} trials={trials} />
+          {isLoading ? <Spinner /> : <ClinicalTrials getStudy={getStudy} trials={trials} />}
         </article>
       </section>
       <PopUpModal isOpen={modalIsOpen} onRequestClose={closeModal}>

@@ -45,7 +45,7 @@ const LocationAutocomplete = ({ location, setLocation, error, setError }) => {
   return (
     <div className='w-full'>
       <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} options={{ types: ['geocode'] }}>
-        <input type='text' placeholder='Location (zip code)' value={location} onChange={(e) => setLocation(e.target.value)} className='w-full max-w-md p-2 mt-2 border border-gray-300 rounded-lg' />
+        <input type='text' placeholder='Location (zip code)' value={location} onChange={(e) => setLocation(e.target.value)} className='w-full md:max-w-md p-2 mt-2 border border-gray-300 rounded-lg' />
       </Autocomplete>
       {error && <p className='text-red-500'>{error}</p>}
     </div>
