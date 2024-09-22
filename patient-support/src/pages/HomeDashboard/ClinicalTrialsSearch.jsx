@@ -71,7 +71,7 @@ const ClinicalTrialsSearch = () => {
   return (
     <section className='flex md:flex-col rounded-lg shadow-md relative'>
       <section className='flex flex-col md:flex-row rounded-lg shadow-md gap-4'>
-        <article className='max-w-sm p-4 bg-gray-100'>
+        <article className='max-w-md p-4 bg-gray-100'>
           <h2 className='text-xl font-semibold'>Search Clinical Trials</h2>
           <DropdownSelect data={cancerTypes} onChange={setCancerType} />
           {errors.cancerType && <p className='text-red-500'>{errors.cancerType}</p>}
@@ -79,7 +79,7 @@ const ClinicalTrialsSearch = () => {
           {/* Use the new LocationAutocomplete component */}
           <LocationAutocomplete location={location} setLocation={setLocation} error={errors.location} setError={(error) => setErrors({ ...errors, location: error })} />
 
-          <button onClick={handleSearch} className='mt-4 w-full max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
+          <button onClick={handleSearch} className='mt-4 w-full max-w-md p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
             Search
           </button>
         </article>
