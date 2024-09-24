@@ -39,30 +39,30 @@ const HomeDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className='p-4 bg-[#d7dbe2]'>
+    <div className="p-4 bg-[#d7dbe2]">
       <ClinicalTrialsSearch />
       {data && data.trials.length > 0 && (
         <>
-          <h3 className='mt-4'>Relevant Clinical Trials</h3>
+          <h3 className="mt-4">Relevant Clinical Trials</h3>
           <ul>
             {data.trials.map((trial, index) => (
-              <li key={index} className='p-2 border-b border-gray-300'>
+              <li key={index} className="p-2 border-b border-gray-300">
                 {trial.title}
               </li>
             ))}
           </ul>
-          <h3 className='mt-4'>Articles</h3>
+          <h3 className="mt-4">Articles</h3>
           <ul>
             {data.articles.map((article, index) => (
-              <li key={index} className='p-2 border-b border-gray-300'>
+              <li key={index} className="p-2 border-b border-gray-300">
                 {article.title}
               </li>
             ))}
           </ul>
-          <h3 className='mt-4'>Nearby Support Groups</h3>
+          <h3 className="mt-4">Nearby Support Groups</h3>
           <ul>
             {data.supportGroups.map((group, index) => (
-              <li key={index} className='p-2 border-b border-gray-300'>
+              <li key={index} className="p-2 border-b border-gray-300">
                 {group.name}
               </li>
             ))}

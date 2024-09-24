@@ -11,7 +11,12 @@ interface LocationAutocompleteProps {
 
 const libraries: Libraries = ['places'];
 
-const LocationAutocomplete: React.FC<LocationAutocompleteProps> = ({ location, setLocation, error, setError }) => {
+const LocationAutocomplete: React.FC<LocationAutocompleteProps> = ({
+  location,
+  setLocation,
+  error,
+  setError,
+}) => {
   const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string, // Ensure proper typing
@@ -55,17 +60,21 @@ const LocationAutocomplete: React.FC<LocationAutocompleteProps> = ({ location, s
   }
 
   return (
-    <div className='w-full'>
-      <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged} options={{ types: ['geocode'] }}>
+    <div className="w-full">
+      <Autocomplete
+        onLoad={onLoad}
+        onPlaceChanged={onPlaceChanged}
+        options={{ types: ['geocode'] }}
+      >
         <input
-          type='text'
-          placeholder='Location (zip code)'
+          type="text"
+          placeholder="Location (zip code)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className='w-full md:max-w-md p-2 mt-2 border border-gray-300 rounded-lg'
+          className="w-full md:max-w-md p-2 mt-2 border border-gray-300 rounded-lg"
         />
       </Autocomplete>
-      {error && <p className='text-red-700 text-sm'>{error}</p>}
+      {error && <p className="text-red-700 text-sm">{error}</p>}
     </div>
   );
 };

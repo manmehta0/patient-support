@@ -28,7 +28,10 @@ const ClinicalTrialsSearch: React.FC<ClinicalTrialsSearchProps> = () => {
   const [matchScore, setMatchScore] = useState<number>(0);
   const [study, setStudy] = useState<Study>({});
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [errors, setErrors] = useState<{ cancerType: string; location: string }>({ cancerType: '', location: '' });
+  const [errors, setErrors] = useState<{ cancerType: string; location: string }>({
+    cancerType: '',
+    location: '',
+  });
   const [isLoading, showLoader] = useState<boolean>(false);
 
   const openModal = () => setModalIsOpen(true);
@@ -70,7 +73,9 @@ const ClinicalTrialsSearch: React.FC<ClinicalTrialsSearchProps> = () => {
     showLoader(true);
     setStudy({});
     try {
-      const response = await fetch(`${API_BASE_URL}/clinical-trials?cancerType=${cancerType}&location=${location}`);
+      const response = await fetch(
+        `${API_BASE_URL}/clinical-trials?cancerType=${cancerType}&location=${location}`
+      );
       const data = await response.json();
       setTrials(data.trials);
       calculateMatchScore(data.trials);
@@ -87,26 +92,29 @@ const ClinicalTrialsSearch: React.FC<ClinicalTrialsSearchProps> = () => {
   };
 
   return (
-    <section className='flex w-full md:flex-col rounded-lg shadow-md relative'>
-      <section className='flex w-full flex-col md:flex-row rounded-lg shadow-md gap-4'>
-        <article className='w-full md:max-w-sm p-4 bg-gray-100'>
-          <h2 className='text-xl font-semibold pb-2'>Search Clinical Trials</h2>
+    <section className="flex w-full md:flex-col rounded-lg shadow-md relative">
+      <section className="flex w-full flex-col md:flex-row rounded-lg shadow-md gap-4">
+        <article className="w-full md:max-w-sm p-4 bg-gray-100">
+          <h2 className="text-xl font-semibold pb-2">Search Clinical Trials</h2>
           <DropdownSelect data={cancerTypes} onChange={setCancerType} />
-          {errors.cancerType && <p className='text-red-700 text-sm'>{errors.cancerType}</p>}
+          {errors.cancerType && <p className="text-red-700 text-sm">{errors.cancerType}</p>}
 
           {/* Use the new LocationAutocomplete component */}
-          <LocationAutocomplete 
-            location={location} 
-            setLocation={setLocation} 
-            error={errors.location} 
-            setError={(error) => setErrors({ ...errors, location: error })} 
+          <LocationAutocomplete
+            location={location}
+            setLocation={setLocation}
+            error={errors.location}
+            setError={(error) => setErrors({ ...errors, location: error })}
           />
-          <Button onClick={handleSearch} className='mt-4 w-full md:max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700'>
+          <Button
+            onClick={handleSearch}
+            className="mt-4 w-full md:max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700"
+          >
             Search
           </Button>
         </article>
-        <article className='p-4 bg-gray-100'>
-          <h2 className='text-xl font-semibold pb-2'>Match Score: {matchScore}</h2>
+        <article className="p-4 bg-gray-100">
+          <h2 className="text-xl font-semibold pb-2">Match Score: {matchScore}</h2>
           {isLoading ? <Spinner /> : <ClinicalTrials getStudy={getStudy} trials={trials} />}
         </article>
       </section>

@@ -1,6 +1,6 @@
 export const PatientInfo = ({ patientInfo }: any) => (
-  <div className='bg-white shadow rounded-lg p-6'>
-    <h2 className='text-xl font-semibold mb-4'>Patient Information</h2>
+  <div className="bg-white shadow rounded-lg p-6">
+    <h2 className="text-xl font-semibold mb-4">Patient Information</h2>
     <p>
       <strong>Age:</strong> {patientInfo.age}
     </p>

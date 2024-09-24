@@ -1,4 +1,3 @@
-
 export const API_BASE_URL: string = `${import.meta.env.VITE_APP_API_HOST ?? ''}/api`;
 
 export interface CancerType {
@@ -40,8 +39,10 @@ export const cancerTypes: CancerType[] = [
     label: 'Astrocytomas, Childhood (Brain Cancer)',
   },
   {
-    value: 'Atypical Teratoid/Rhabdoid Tumor, Childhood, Central Nervous System (CNS) Tumor (Brain Cancer)',
-    label: 'Atypical Teratoid/Rhabdoid Tumor, Childhood, Central Nervous System (CNS) Tumor (Brain Cancer)',
+    value:
+      'Atypical Teratoid/Rhabdoid Tumor, Childhood, Central Nervous System (CNS) Tumor (Brain Cancer)',
+    label:
+      'Atypical Teratoid/Rhabdoid Tumor, Childhood, Central Nervous System (CNS) Tumor (Brain Cancer)',
   },
   {
     value: 'Basal Cell Carcinoma of the Skin (Skin Cancer)',
@@ -248,8 +249,10 @@ export const cancerTypes: CancerType[] = [
     label: 'Male Breast Cancer',
   },
   {
-    value: 'Medulloblastoma and Other Central Nervous System (CNS) Embryonal Tumors, Childhood (Brain Cancer)',
-    label: 'Medulloblastoma and Other Central Nervous System (CNS) Embryonal Tumors, Childhood (Brain Cancer)',
+    value:
+      'Medulloblastoma and Other Central Nervous System (CNS) Embryonal Tumors, Childhood (Brain Cancer)',
+    label:
+      'Medulloblastoma and Other Central Nervous System (CNS) Embryonal Tumors, Childhood (Brain Cancer)',
   },
   {
     value: 'Melanoma',

@@ -17,8 +17,8 @@ interface BaselineCharacteristicsProps {
 
 const BaselineCharacteristics: React.FC<BaselineCharacteristicsProps> = ({ data }) => {
   return (
-    <section className='flex-1 flex-grow mb-6'>
-      <h2 className='text-xl font-semibold mb-2'>Baseline Characteristics</h2>
+    <section className="flex-1 flex-grow mb-6">
+      <h2 className="text-xl font-semibold mb-2">Baseline Characteristics</h2>
       <p>
         <strong>Population Description:</strong> {data.populationDescription}
       </p>

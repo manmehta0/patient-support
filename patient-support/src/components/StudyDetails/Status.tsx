@@ -18,8 +18,8 @@ interface StatusProps {
 
 const Status: React.FC<StatusProps> = ({ data }) => {
   return (
-    <section className='mb-6'>
-      <h2 className='text-xl font-semibold mb-2'>Status</h2>
+    <section className="mb-6">
+      <h2 className="text-xl font-semibold mb-2">Status</h2>
       <p>
         <strong>Overall Status:</strong> {data.overallStatus}
       </p>

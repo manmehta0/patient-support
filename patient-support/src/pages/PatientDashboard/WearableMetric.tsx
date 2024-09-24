@@ -1,11 +1,11 @@
-import { TrendIndicator } from "./TrendIndicator";
+import { TrendIndicator } from './TrendIndicator';
 
 export const WearableMetric = ({ icon, name, value, trend }: any) => (
-  <div className='flex items-center'>
+  <div className="flex items-center">
     {icon}
-    <div className='ml-2'>
-      <p className='text-sm font-semibold'>{name}</p>
-      <p className='text-lg'>{value}</p>
+    <div className="ml-2">
+      <p className="text-sm font-semibold">{name}</p>
+      <p className="text-lg">{value}</p>
       <TrendIndicator trend={trend} />
     </div>
   </div>

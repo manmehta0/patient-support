@@ -18,8 +18,8 @@ interface IdentificationProps {
 
 const Identification: React.FC<IdentificationProps> = ({ data }) => {
   return (
-    <section className='max-w-3xl mb-6'>
-      <h2 className='text-xl font-semibold mb-2'>Identification</h2>
+    <section className="max-w-3xl mb-6">
+      <h2 className="text-xl font-semibold mb-2">Identification</h2>
       <p>
         <strong>NCT ID:</strong> {data.nctId}
       </p>

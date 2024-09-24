@@ -33,13 +33,13 @@ const StudyDetails: React.FC<StudyDetailsProps> = ({ data }) => {
   const showResults = !isEmpty(resultsSection);
 
   return (
-    <div className='p-6 bg-white'>
-      <h1 className='text-2xl font-bold mb-4'>Study Details</h1>
+    <div className="p-6 bg-white">
+      <h1 className="text-2xl font-bold mb-4">Study Details</h1>
 
       {/* Protocol Section */}
       {showProtocolSection && (
         <>
-          <section className='flex flex-col md:flex-row gap-6'>
+          <section className="flex flex-col md:flex-row gap-6">
             <Identification data={protocolSection?.identificationModule} />
             <Status data={protocolSection?.statusModule} />
             <SponsorCollaborators data={protocolSection?.sponsorCollaboratorsModule} />
@@ -52,7 +52,7 @@ const StudyDetails: React.FC<StudyDetailsProps> = ({ data }) => {
       {/* Results Section */}
       {showResults && (
         <>
-          <h1 className='text-2xl font-bold mb-4'>Results</h1>
+          <h1 className="text-2xl font-bold mb-4">Results</h1>
           <ParticipantFlow data={resultsSection?.participantFlowModule} />
           <BaselineCharacteristics data={resultsSection?.baselineCharacteristicsModule} />
         </>

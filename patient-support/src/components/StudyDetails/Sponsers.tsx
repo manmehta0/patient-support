@@ -25,8 +25,8 @@ interface SponsorCollaboratorsProps {
 
 const SponsorCollaborators: React.FC<SponsorCollaboratorsProps> = ({ data }) => {
   return (
-    <section className='mb-6'>
-      <h2 className='text-xl font-semibold mb-2'>Sponsor & Collaborators</h2>
+    <section className="mb-6">
+      <h2 className="text-xl font-semibold mb-2">Sponsor & Collaborators</h2>
       <p>
         <strong>Responsible Party:</strong> {data.responsibleParty.investigatorFullName}
       </p>

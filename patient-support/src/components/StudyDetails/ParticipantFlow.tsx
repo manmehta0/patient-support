@@ -18,8 +18,8 @@ interface ParticipantFlowProps {
 
 const ParticipantFlow: React.FC<ParticipantFlowProps> = ({ data }) => {
   return (
-    <section className='flex-1 flex-grow mb-6'>
-      <h2 className='text-xl font-semibold mb-2'>Participant Flow</h2>
+    <section className="flex-1 flex-grow mb-6">
+      <h2 className="text-xl font-semibold mb-2">Participant Flow</h2>
       <p>
         <strong>Pre-assignment Details:</strong> {data.preAssignmentDetails}
       </p>

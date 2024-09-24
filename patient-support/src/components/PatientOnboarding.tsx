@@ -54,44 +54,47 @@ const PatientOnboarding: React.FC = () => {
   };
 
   return (
-    <div className='p-4 bg-gray-100 rounded-lg shadow-md'>
-      <h2 className='text-xl font-semibold'>Patient Onboarding</h2>
+    <div className="p-4 bg-gray-100 rounded-lg shadow-md">
+      <h2 className="text-xl font-semibold">Patient Onboarding</h2>
       <form onSubmit={handleSubmit}>
         <input
-          type='text'
-          name='name'
-          placeholder='Full Name'
-          className='w-full p-2 mt-2 border border-gray-300 rounded-lg'
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
           onChange={handleChange}
         />
         <input
-          type='text'
-          name='cancerType'
-          placeholder='Cancer Type'
-          className='w-full p-2 mt-2 border border-gray-300 rounded-lg'
+          type="text"
+          name="cancerType"
+          placeholder="Cancer Type"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
           onChange={handleChange}
         />
         <input
-          type='text'
-          name='stage'
-          placeholder='Stage'
-          className='w-full p-2 mt-2 border border-gray-300 rounded-lg'
+          type="text"
+          name="stage"
+          placeholder="Stage"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
           onChange={handleChange}
         />
         <input
-          type='text'
-          name='currentTreatment'
-          placeholder='Current Treatment'
-          className='w-full p-2 mt-2 border border-gray-300 rounded-lg'
+          type="text"
+          name="currentTreatment"
+          placeholder="Current Treatment"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
           onChange={handleChange}
         />
         <input
-          type='file'
-          name='medicalRecords'
-          className='w-full p-2 mt-2 border border-gray-300 rounded-lg'
+          type="file"
+          name="medicalRecords"
+          className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
           onChange={handleFileChange}
         />
-        <button type='submit' className='w-full mt-4 p-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700'>
+        <button
+          type="submit"
+          className="w-full mt-4 p-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+        >
           Submit
         </button>
       </form>

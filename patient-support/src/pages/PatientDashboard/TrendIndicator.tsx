@@ -1,6 +1,6 @@
-import { TrendingUp } from "lucide-react";
+import { TrendingUp } from 'lucide-react';
 
-export const TrendIndicator = ({ trend }:any) => {
+export const TrendIndicator = ({ trend }: any) => {
   const getColor = () => {
     switch (trend) {
       case 'increasing':
@@ -14,8 +14,8 @@ export const TrendIndicator = ({ trend }:any) => {
 
   return (
     <div className={`flex items-center ${getColor()}`}>
-      <TrendingUp className='w-4 h-4 mr-1' />
-      <span className='text-sm capitalize'>{trend}</span>
+      <TrendingUp className="w-4 h-4 mr-1" />
+      <span className="text-sm capitalize">{trend}</span>
     </div>
   );
 };
