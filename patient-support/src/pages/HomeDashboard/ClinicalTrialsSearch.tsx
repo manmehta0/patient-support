@@ -7,7 +7,7 @@ import LocationAutocomplete from '@/components/LocationAutoComplete';
 import StudyDetails from '@/components/StudyDetails';
 import { Spinner } from '@/shadcn/ui/spinner';
 import { Button } from '@/shadcn/ui/button';
-import { Popover, PopoverContent } from '@/shadcn/ui/popover';
+// import { Popover, PopoverContent } from '@/shadcn/ui/popover';
 
 // Define the types for the state and props
 interface Study {
