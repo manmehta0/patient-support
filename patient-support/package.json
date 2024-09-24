@@ -38,7 +38,21 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "!(*.css|*.js|*.jsx|*.ts|*.tsx)": [
+      "prettier --write"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -70,8 +84,12 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-react-app": "^7.0.1",
+    "husky": "^9.1.6",
     "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
     "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "stylelint": "^16.9.0",
     "tailwindcss": "^3.4.13",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.2"
