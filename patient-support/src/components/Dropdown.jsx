@@ -3,10 +3,10 @@
 import * as React from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from '../lib/utils';
-import { Button } from '../shadcn/ui/button';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../shadcn/ui/command';
-import { Popover, PopoverContent, PopoverTrigger } from '../shadcn/ui/popover';
+import { cn } from '@/lib/utils';
+import { Button } from '@/shadcn/ui/button';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/shadcn/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/shadcn/ui/popover';
 
 export function DropdownSelect({ data, onChange }) {
   const [open, setOpen] = React.useState(false);

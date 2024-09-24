@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { API_BASE_URL, cancerTypes } from '../../constants';
 import { ClinicalTrials } from '../PatientDashboard/ClinicalTrials';
-import PopUpModal from '../../components/PopupModal';
-import { DropdownSelect } from '../../components/Dropdown';
-import LocationAutocomplete from '../../components/LocationAutoComplete';
-import StudyDetails from '../../components/StudyDetails';
-import { Spinner } from '../../shadcn/ui/spinner';
-import { Button } from '../../shadcn/ui/button';
-import { Popover, PopoverContent } from '../../shadcn/ui/popover';
+import PopUpModal from '@/components/PopupModal';
+import { DropdownSelect } from '@/components/Dropdown';
+import LocationAutocomplete from '@/components/LocationAutoComplete';
+import StudyDetails from '@/components/StudyDetails';
+import { Spinner } from '@/shadcn/ui/spinner';
+import { Button } from '@/shadcn/ui/button';
+import { Popover, PopoverContent } from '@/shadcn/ui/popover';
 
 const ClinicalTrialsSearch = () => {
   const [cancerType, setCancerType] = useState('');

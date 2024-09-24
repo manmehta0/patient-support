@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/components/*": ["./src/components/*"],
-      "@/shadcn/*": ["./src/shadcn/ui/*"],
-      "@/lib/*": ["./src/lib/*"]
+      "@/*": ["./src/*"]
     }
   }
 }
