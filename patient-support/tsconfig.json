@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "composite": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -16,12 +17,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["@types/node", "@types/jest", "@testing-library/jest-dom"],
+    "types": ["cypress", "@types/node", "@types/jest", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.mjs"],
   "exclude": ["node_modules"],
   "references": [{ "path": "./tsconfig.vite.json" }]
 }
