@@ -1,7 +1,5 @@
 import { defineConfig } from "cypress";
 import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
-import * as path from 'path';
-const vitePreprocessor = require('cypress-vite');
 
 export default defineConfig({
   e2e: {
