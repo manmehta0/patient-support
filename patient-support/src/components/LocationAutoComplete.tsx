@@ -1,12 +1,13 @@
+/* eslint-disable no-undef */
 import React, { useState } from 'react';
 import { useLoadScript, Autocomplete, Libraries } from '@react-google-maps/api';
 
 // Define the prop types for the component
 interface LocationAutocompleteProps {
   location: string;
-  setLocation: (location: string) => void;
+  setLocation: () => void;
   error: string;
-  setError: (error: string) => void;
+  setError: () => void;
 }
 
 const libraries: Libraries = ['places'];

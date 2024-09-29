@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { API_BASE_URL } from '../../constants';
 import { PatientInfo } from './PatientInfo';

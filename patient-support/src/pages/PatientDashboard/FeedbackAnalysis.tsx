@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const FeedbackAnalysis = ({ feedback, sentiment }: any) => (
   <div className="bg-white shadow rounded-lg p-6">
     <h2 className="text-xl font-semibold mb-4">Feedback Analysis</h2>

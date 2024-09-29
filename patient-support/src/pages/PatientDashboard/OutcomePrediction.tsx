@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const OutcomePrediction = ({ prediction }: any) => (
   <div className="bg-white shadow rounded-lg p-6">
     <h2 className="text-xl font-semibold mb-4">Outcome Prediction</h2>

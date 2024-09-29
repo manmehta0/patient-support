@@ -21,7 +21,7 @@ interface DataItem {
 
 interface DropdownSelectProps {
   data: DataItem[];
-  onChange: (value: string) => void;
+  onChange: () => void;
 }
 
 export const DropdownSelect: React.FC<DropdownSelectProps> = ({ data, onChange }) => {

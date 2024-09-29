@@ -1,3 +1,4 @@
+import React from 'react';
 import { TrendIndicator } from './TrendIndicator';
 
 export const WearableMetric = ({ icon, name, value, trend }: any) => (

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Activity, AlertCircle, Heart, Moon } from 'lucide-react';
 import { WearableMetric } from './WearableMetric';
 

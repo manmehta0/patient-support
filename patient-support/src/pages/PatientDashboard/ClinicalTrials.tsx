@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const ClinicalTrials = ({ trials, getStudy }: { trials: any[]; getStudy: Function }) => {
   return (
     <div className="bg-white w-full shadow rounded-lg p-6">

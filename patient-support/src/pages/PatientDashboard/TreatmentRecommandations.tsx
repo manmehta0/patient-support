@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const TreatmentRecommendations = ({ recommendations }: any) => (
   <div className="bg-white shadow rounded-lg p-6">
     <h2 className="text-xl font-semibold mb-4">Treatment Recommendations</h2>
