@@ -10,7 +10,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   // errors, so we let them fail the test
 });
 
-
 Given('I am on the Patient Onboarding page', () => {
   cy.visit('http://localhost:3000/'); // Update with the actual path
 });

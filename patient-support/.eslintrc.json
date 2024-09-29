@@ -4,12 +4,7 @@
     "browser": true,
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "react-app/jest"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier", "react-app/jest"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -19,11 +14,7 @@
       "jsx": true
     }
   },
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "rules": {
     "no-unused-vars": "warn",
     "eqeqeq": ["error", "smart"],
@@ -43,8 +34,5 @@
       }
     }
   ],
-  "ignorePatterns": [
-    "dist",
-    "node_modules"
-  ]
+  "ignorePatterns": ["dist", "node_modules"]
 }
