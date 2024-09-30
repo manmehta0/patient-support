@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React, { useState } from 'react';
 import { useLoadScript, Autocomplete, Libraries } from '@react-google-maps/api';
@@ -5,9 +6,9 @@ import { useLoadScript, Autocomplete, Libraries } from '@react-google-maps/api';
 // Define the prop types for the component
 interface LocationAutocompleteProps {
   location: string;
-  setLocation: () => void;
+  setLocation: (location: string) => void;
   error: string;
-  setError: () => void;
+  setError: (error: string) => void;
 }
 
 const libraries: Libraries = ['places'];
@@ -69,6 +70,7 @@ const LocationAutocomplete: React.FC<LocationAutocompleteProps> = ({
       >
         <input
           type="text"
+          data-testid="location"
           placeholder="Location (zip code)"
           value={location}
           onChange={(e) => setLocation(e.target.value)}

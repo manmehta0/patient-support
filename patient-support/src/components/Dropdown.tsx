@@ -21,7 +21,8 @@ interface DataItem {
 
 interface DropdownSelectProps {
   data: DataItem[];
-  onChange: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onChange: (value: string) => void;
 }
 
 export const DropdownSelect: React.FC<DropdownSelectProps> = ({ data, onChange }) => {

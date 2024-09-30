@@ -5,6 +5,6 @@
     "moduleResolution": "node",
     "types": ["@types/node"]
   },
-  "include": ["*.ts", "vite.config.mjs"],
+  "include": ["*.ts", "vite.config.mjs", "postcss.config.js"],
   "exclude": ["node_modules"]
 }

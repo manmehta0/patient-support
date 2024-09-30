@@ -96,7 +96,7 @@ const ClinicalTrialsSearch: React.FC<ClinicalTrialsSearchProps> = () => {
       <section className="flex w-full flex-col md:flex-row rounded-lg shadow-md gap-4">
         <article className="w-full md:max-w-sm p-4 bg-gray-100">
           <h2 className="text-xl font-semibold pb-2">Search Clinical Trials</h2>
-          <DropdownSelect data={cancerTypes} onChange={setCancerType} />
+          <DropdownSelect data-testid="cancer_type" data={cancerTypes} onChange={setCancerType as any} />
           {errors.cancerType && <p className="text-red-700 text-sm">{errors.cancerType}</p>}
 
           {/* Use the new LocationAutocomplete component */}
@@ -107,6 +107,7 @@ const ClinicalTrialsSearch: React.FC<ClinicalTrialsSearchProps> = () => {
             setError={(error) => setErrors({ ...errors, location: error })}
           />
           <Button
+            data-testid="search_btn"
             onClick={handleSearch}
             className="mt-4 w-full md:max-w-sm p-2 bg-blue-600 text-white rounded-lg hover:bg-purple-700"
           >
