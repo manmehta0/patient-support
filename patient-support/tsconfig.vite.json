@@ -3,8 +3,8 @@
     "composite": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "types": ["@types/node"]
+    "types": ["@types/node", "cypress"]
   },
-  "include": ["*.ts", "vite.config.mjs", "postcss.config.js"],
+  "include": ["cypress/**/*.cy.ts", "*.ts", "vite.config.mjs", "postcss.config.js"],
   "exclude": ["node_modules"]
 }

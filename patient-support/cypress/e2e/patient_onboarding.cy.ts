@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/// <reference types="cypress" />
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
 
 Cypress.on('uncaught:exception', (err) => {
