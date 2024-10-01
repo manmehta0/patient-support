@@ -96,7 +96,11 @@ const ClinicalTrialsSearch: React.FC<ClinicalTrialsSearchProps> = () => {
       <section className="flex w-full flex-col md:flex-row rounded-lg shadow-md gap-4">
         <article className="w-full md:max-w-sm p-4 bg-gray-100">
           <h2 className="text-xl font-semibold pb-2">Search Clinical Trials</h2>
-          <DropdownSelect data-testid="cancer_type" data={cancerTypes} onChange={setCancerType as any} />
+          <DropdownSelect
+            data-testid="cancer_type"
+            data={cancerTypes}
+            onChange={setCancerType as any}
+          />
           {errors.cancerType && <p className="text-red-700 text-sm">{errors.cancerType}</p>}
 
           {/* Use the new LocationAutocomplete component */}

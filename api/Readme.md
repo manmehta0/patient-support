@@ -15,36 +15,36 @@ This project is a Flask-based API designed to support cancer patients by providi
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/your-repo/cancer-clinical-trials-support-api.git
-    cd cancer-clinical-trials-support-api
-    ```
+   ```bash
+   git clone https://github.com/your-repo/cancer-clinical-trials-support-api.git
+   cd cancer-clinical-trials-support-api
+   ```
 
 2. Create a virtual environment and activate it:
 
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use: venv\Scripts\activate
-    ```
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use: venv\Scripts\activate
+   ```
 
 3. Install the required dependencies:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 4. Set up environment variables for API keys:
 
-    ```bash
-    export CLIENT_API_KEY=your_nci_api_key
-    export OPEN_API_KEY=your_openai_api_key
-    ```
+   ```bash
+   export CLIENT_API_KEY=your_nci_api_key
+   export OPEN_API_KEY=your_openai_api_key
+   ```
 
 5. Run the Flask application:
 
-    ```bash
-    python app.py
-    ```
+   ```bash
+   python app.py
+   ```
 
 ## API Endpoints
 

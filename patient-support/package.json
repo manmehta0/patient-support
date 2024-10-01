@@ -15,14 +15,14 @@
   "lint-staged": {
     "src/**/*.css": [
       "stylelint --fix",
-      "prettier --write"
+      "npx prettier --write ."
     ],
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "npx prettier --write ."
     ],
     "!(src/**/*.css|*.js|*.jsx|*.ts|*.tsx)": [
-      "prettier --write"
+      "npx prettier --write ."
     ]
   },
   "husky": {

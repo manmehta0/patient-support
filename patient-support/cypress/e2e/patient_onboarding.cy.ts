@@ -16,9 +16,9 @@ Given('I am on the Patient Onboarding page', () => {
 });
 
 When('I fill in the registration form', () => {
-  cy.get("[data-testid=location]").type('92618');
-  cy.get("[type=button]").contains('Cancer Type').as('cancer_type').type('breast cancer');
-  cy.get("[role=option]", { timeout: 10000 }).contains('Breast Cancer').click();
+  cy.get('[data-testid=location]').type('92618');
+  cy.get('[type=button]').contains('Cancer Type').as('cancer_type').type('breast cancer');
+  cy.get('[role=option]', { timeout: 10000 }).contains('Breast Cancer').click();
 });
 
 /*When('I fill in the registration form', () => {
@@ -29,7 +29,7 @@ When('I fill in the registration form', () => {
 });*/
 
 When('I submit the form', () => {
-  cy.get("[data-testid=search_btn]", { timeout: 30000 }).click();
+  cy.get('[data-testid=search_btn]', { timeout: 30000 }).click();
 });
 
 Then('I should see a success message', () => {
