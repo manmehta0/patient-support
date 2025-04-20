@@ -16,7 +16,6 @@ from package.openai_service import generate_chat_response
 app = Flask(__name__)
 CORS(app)
 
-
 @app.route('/api/autocomplete', methods=['GET'])
 def autocomplete():
     input_text = request.args.get('input')
